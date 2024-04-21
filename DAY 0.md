@@ -54,3 +54,7 @@ $ sudo apt install gtkwave
 ### OpenLane
 
 
+
+### Day 1 - Introduction to Verilog RTL Design and Synthesis
+
+
