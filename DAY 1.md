@@ -8,7 +8,7 @@
 
 
 ### GTKwave
-![Screenshot from 2024-04-20 21-38-14](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/da21af90-db02-488e-b54e-7f810f33d8c2)
+![Screenshot from 2024-04-20 21-54-09](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/4bc90917-29f8-48cc-96fd-c601dd75080b)
 
 
 ### OpenSTA
