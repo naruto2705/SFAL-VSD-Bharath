@@ -59,4 +59,17 @@ $ sudo apt install gtkwave
 
 ## Day 1 - Introduction to Verilog RTL Design and Synthesis
 
+# Introduction to  iverilog
+
+<img width="762" alt="iverilog" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/5e5f92df-ee42-43c4-b87f-5a2864659ff2">
+
+# Introduction to gtk wave
+
+# Intro logic synthesis 
+
+
+<img width="611" alt="logic synthesis" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/106e9b17-3868-4849-bf8e-bf5ab8110c0b">
+
+
+
 
