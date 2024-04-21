@@ -1,6 +1,8 @@
 # SFAL-VSD Program
 
 ### Installing YOSYS
+
+```
 $ git clone https://github.com/YosysHQ/yosys.git
 $ cd yosys 
 $ sudo apt install make (If make is not installed please install it) 
@@ -10,6 +12,8 @@ $ sudo apt-get install build-essential clang bison flex \
     libboost-python-dev libboost-filesystem-dev zlib1g-dev
 $ make 
 $ sudo make install
+```
+
 
 ![Screenshot from 2024-04-20 21-36-54](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/e4763fb2-f6b6-4bd5-8642-77f491c8a031)
 
