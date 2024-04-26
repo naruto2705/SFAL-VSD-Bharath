@@ -68,7 +68,39 @@ $ sudo apt install gtkwave
 # Intro logic synthesis 
 
 
+
 <img width="611" alt="logic synthesis" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/106e9b17-3868-4849-bf8e-bf5ab8110c0b">
+
+
+## DAY 2 - Timing libs, Hierarchical vs Flat Synthesis
+
+## DAY 3 - Combinational and sequential Optimizations
+
+### Intro to optimizations
+
+Squeezing the logic to get the most optimised design (in terms of Area amnd Power savings)
+
+Constant Propagation:
+Advantage
+Boolean Logic Optimizations: Changing the boolean expression from Complex to Simple.
+
+#### Sequential Logic optimization 
+
+Constant Propogation: Output can be constant irrespective of gates
+
+
+
+
+#### Advanced Topics:
+
+State Optimization: Optimization of unused states
+Cloning: Reusing for mapping
+Retiming
+
+
+## DAY 4 - GLS, blocking vs non-blocking and Synthesis-Simulation mismatch
+
+Retiming 
 
 
 
