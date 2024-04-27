@@ -100,7 +100,40 @@ Retiming
 
 ## DAY 4 - GLS, blocking vs non-blocking and Synthesis-Simulation mismatch
 
-Retiming 
+### GLS Concepts and Flow using Iverilog
+
+GLS: Running the test bench with Netlist as DUT( Design Under Test)
+Netlist is Logically same as RTL Code(test Bench aligns with the design)
+![IMG_0208](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/2a326ce6-4794-4988-bfc5-a546ba2d5fd2)
+
+
+GLS verify the logical correctness of design after synthesis and Ensures whether the timing of the design are met or not (For this GLS needs to be run with delay Annotation).
+
+![IMG_0209](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/de5091d8-a641-4d7f-93ef-163e1ab871b7)
+
+Synthesis Simulation Mismatch
+1. Missing Sensitivity List
+2. Blocking vs Non-Blocking Assignments
+3. Non Standard Verilog Coding
+
+#### Missing Sensitivity List
+![IMG_0210](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/477d0b4d-4e24-4778-9d72-706074a190b3)
+
+
+### Blocking an Non-Blocking Statements in Verilog
+
+#### Inside Always Block
+![IMG_0211](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/b5e8bd1b-0853-4b1a-9115-2b49cef6855c)
+
+Caveats with Blocking Statements
+
+![IMG_0214](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/8e1cecfb-c85e-4965-94b4-7f08e7fa3290)
+
+![IMG_0215](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/4a74962a-9a67-4903-9776-6bbaba00bae0)
+
+   
+
+
 
 
 
