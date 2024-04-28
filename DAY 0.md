@@ -16,8 +16,8 @@ $ make
 $ sudo make install
 ```
 
+![Screenshot from 2024-04-27 21-20-21](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/293bb95e-ed24-4377-b4f3-3ff0b4e641b6)
 
-![Screenshot from 2024-04-20 21-36-54](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/e4763fb2-f6b6-4bd5-8642-77f491c8a031)
 
 
 
@@ -78,15 +78,18 @@ $ sudo apt install gtkwave
 
 ### Intro to optimizations
 
+#### Combinational Logic Optimisation
+
 Squeezing the logic to get the most optimised design (in terms of Area amnd Power savings)
 
-Constant Propagation:
+Constant Propagation ---> Direct Optimisation
 Advantage
 Boolean Logic Optimizations: Changing the boolean expression from Complex to Simple.
 
 #### Sequential Logic optimization 
 
 Constant Propogation: Output can be constant irrespective of gates
+![IMG_0216](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/3b5c1973-d9bf-401c-808d-760c509bb653)
 
 
 
@@ -96,6 +99,24 @@ Constant Propogation: Output can be constant irrespective of gates
 State Optimization: Optimization of unused states
 Cloning: Reusing for mapping
 Retiming
+
+![IMG_0217](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/5c160ea0-ea2d-4968-9d3b-cd36ec8f7081)
+![IMG_0218](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/383ee9ab-868f-41ab-b043-183c4919e6bf)
+![IMG_0219](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/d6e4bd6b-4cbf-4370-8c72-ad4f04d78761)
+
+
+## Labs: Day 3
+
+
+#### Sequential Logic optimization 
+
+![Screenshot from 2024-04-27 19-08-47](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/49c57e84-1aba-4f6f-b57f-b7d5d0503e3b)
+
+
+![IMG_0224](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/51e6d840-3ab2-49db-b2f9-89f765e90a25)
+![IMG_0226](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/acd35f72-32a0-41b4-ba3e-6c1ad238a0bf)
+![Screenshot from 2024-04-27 21-08-00](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/63e4c083-1f9a-4ccf-b098-e0226e0861df)
+
 
 
 ## DAY 4 - GLS, blocking vs non-blocking and Synthesis-Simulation mismatch
