@@ -46,17 +46,6 @@ $ sudo apt install gtkwave
 
 
 
-
-### OpenSTA
-
-### ngspice
-
-### magic
-
-### OpenLane
-
-
-
 ## Day 1 - Introduction to Verilog RTL Design and Synthesis
 
 # Introduction to  iverilog
