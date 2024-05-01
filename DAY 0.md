@@ -346,7 +346,9 @@ Caveats with Blocking Statements
 
   iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v
 
-  (ATTACH THE PIC)
+![IMG_0229](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/26e930ae-bb19-409e-83e3-654cebfd7d80)
+![IMG_0228](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/62a47aca-1547-4aba-824a-b143fce71035)
+
 
   For synthesis mismatch behavior :
 
@@ -364,9 +366,9 @@ Caveats with Blocking Statements
   ```
 
 In the RTL simulation clearly, we can see a bad mux behavior, a flop behavior.
-In synthesized netlist simulation we see a good mux behavior. So a mismatch between them.
 
- (ATTACH THE PIC)
+![IMG_0230](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/af9f4233-2461-4af5-b861-2502aa234e2b)
+
 
 Blocking caveat: Intended design is `y = (a|b)&c' , code is...
 
@@ -380,6 +382,9 @@ begin
 end
 endmodule
 ```
+
+![IMG_0232](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/cf00b27d-cadc-48b6-a73f-e66ff40dd16f)
+
 
 
 
