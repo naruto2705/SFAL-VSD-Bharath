@@ -352,7 +352,7 @@ Caveats with Blocking Statements
 
   For synthesis mismatch behavior :
 
-    ```
+
     module bad_mux (input i0 , input i1 , input sel , output reg y);
     always @ (sel)
     begin
@@ -363,7 +363,7 @@ Caveats with Blocking Statements
     end
     endmodule
     
-  ```
+
 
 In the RTL simulation clearly, we can see a bad mux behavior, a flop behavior.
 
@@ -384,6 +384,35 @@ endmodule
 ```
 
 ![IMG_0232](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/cf00b27d-cadc-48b6-a73f-e66ff40dd16f)
+
+## DAY 5 DFT, dc_shell, icc2_shell, lc_shell commands
+
+DFT: Technique facilitates the design to become testable after production(additional design). It is generally introduced during synthesis.
+
+Ex: Mbist logic for Macro, flops- Scan chains, combinational circuits- test patterns 
+
+Three levels of DFT
+
+1) Chip Level testing
+2) Board Level testing
+3) System Level testing
+
+Types of DFT Techniques:
+
+1) Ad-hoc
+2) Structured
+
+
+![Screenshot (61)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/7d56e23e-8534-4628-ae8e-8a677ad6145e)
+
+
+dc_shell is the command line interface for Synopsys's Design Compiler, which is an RTL synthesis solution that allows users to optimize power, area, timing, and test simultaneously
+
+![Screenshot (55)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/150cd92b-48ce-421b-a5c5-6a0d1b45e2c8)
+![Screenshot (57)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/73d92e68-2745-4a19-9c84-7edd7795dee5)
+![Screenshot (58)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/51f5af9d-8451-40e2-b3fa-8d5656895e35)
+
+
 
 
 
