@@ -413,6 +413,41 @@ dc_shell is the command line interface for Synopsys's Design Compiler, which is 
 ![Screenshot (58)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/51f5af9d-8451-40e2-b3fa-8d5656895e35)
 
 
+<details> 
+<img width="1203" alt="sta1" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/083d683c-1e6f-4231-a9c8-5ab4fefbc6ac">
+<img width="1215" alt="sta2" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/0eb39ad2-aa51-473f-83fa-e21e7307e0f8">
+<img width="1223" alt="sta3" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/d243fc86-267c-4d3d-9ad3-b0bd4feda82a">
+<img width="1149" alt="sta4" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/bb599909-9108-4910-b498-3833b1b881c1">
+<img width="1180" alt="sta5" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/5232ddbc-150c-466d-a4f5-523aba6b23b5">
+<img width="1163" alt="sta6" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/44ffb460-e56e-4b9a-b4e4-e09a239f7a10">
+<img width="1216" alt="sta7" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/963f603b-9156-4f81-94d8-f7f91ad2954b">
+<img width="1214" alt="sta8" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/473002e7-e8c0-4cab-9ac7-ae3d0a192d8d">
+<img width="1220" alt="sta9" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/1c0dea60-4770-448d-bf5d-8220c25af91d">
+<img width="1161" alt="sta10" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/e3d4a3d7-77f7-4fa7-8bed-81da8eb7d28d">
+<img width="1177" alt="sta12" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/0a480787-0dbe-47b8-94cc-e832d60e90e7">
+<img width="1197" alt="sta13" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/cf9366a9-782e-42a0-a243-82d44b0df861">
+<img width="1223" alt="sta14" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/6815722b-5871-4021-b75c-f739ce9675bd">
+<img width="1148" alt="sta15" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/7ce78f04-a092-4de0-a4f1-44f5e9d4a2e8">
+<img width="1229" alt="sta16" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/6c5a3917-012b-46df-8998-9187b75e71a9">
+<img width="1184" alt="sta17" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/726a2cf5-65f7-4670-a575-c6868028d800">
+<img width="1215" alt="sta18" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/12039724-7adf-4ea0-9ca5-39bc874e636b">	
+<img width="1134" alt="sta19" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/66abaadd-c04e-4390-8027-8b0acd826d3a">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<summary> DAY 7 Basics of Static Timing Analysis </summary>
+
+
 
 
 
