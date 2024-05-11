@@ -1,7 +1,11 @@
 # SFAL-VSD Program
 
-## DAY-0
 
+
+<details> 
+
+<summary> DAY 0 </summary>
+## DAY-0
 ### Installing YOSYS
 
 ```
@@ -43,9 +47,12 @@ $ sudo apt install gtkwave
 ```
 ![Screenshot from 2024-04-20 21-54-09](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/4bc90917-29f8-48cc-96fd-c601dd75080b)
 
+</details> 
 
 
 
+<details> 
+<summary> DAY 1 Introduction to Verilog RTL Design and Synthesis </summary>
 ## Day 1 - Introduction to Verilog RTL Design and Synthesis
 
 # Introduction to  iverilog
@@ -108,6 +115,11 @@ The front end library contains a collection of gate components like nand, nor et
 The propagation delay is influenced also by the charging and discharging of the capacitance/loads, this will need an optimization of the cell size and cell number.
 
 Faster cells - less delay, wider transistor, more area and power, possible hold violations Slower cells - more delay, narrow transistor, less area and power, setup and performance violations
+
+</details> 
+
+ <details> 
+<summary> DAY 2 - Timing libs, Hierarchical vs Flat Synthesis </summary>
 ## DAY 2 - Timing libs, Hierarchical vs Flat Synthesis
 
 Working with libs...
@@ -156,6 +168,12 @@ The flops will restrict the glitches propagation because the flop output will ch
 
 The value of the flop must be known all the time for these signals like reset or set are used to control the initial state. This can be synchronous or asynchronous.
 (ATTACH THE PICTURE)
+
+</details>
+
+
+ <details> 
+<summary> DAY 3 - Combinational and Sequential Optimizations </summary>
 
 ## DAY 3 - Combinational and Sequential Optimizations
 
@@ -283,10 +301,11 @@ In the diagram, one flop is with reset and one with set . The inverters are gene
 
 Use cases with different set/reset combinations:
 (ATTACH THE PICS)
+ </details> 
 
 
-
-
+ <details> 
+<summary>  DAY 4 - GLS, blocking vs non-blocking and Synthesis-Simulation mismatch </summary>
 
 ## DAY 4 - GLS, blocking vs non-blocking and Synthesis-Simulation mismatch
 
@@ -385,6 +404,14 @@ endmodule
 
 ![IMG_0232](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/cf00b27d-cadc-48b6-a73f-e66ff40dd16f)
 
+</details> 
+
+
+
+<details> 
+<summary>  DAY 5 DFT, dc_shell, icc2_shell, lc_shell commands </summary>
+
+
 ## DAY 5 DFT, dc_shell, icc2_shell, lc_shell commands
 
 DFT: Technique facilitates the design to become testable after production(additional design). It is generally introduced during synthesis.
@@ -413,8 +440,22 @@ dc_shell is the command line interface for Synopsys's Design Compiler, which is 
 ![Screenshot (58)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/51f5af9d-8451-40e2-b3fa-8d5656895e35)
 
 
+
+ </details> 
+
+ 
 <details> 
-<img width="1203" alt="sta1" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/083d683c-1e6f-4231-a9c8-5ab4fefbc6ac">
+<summary>  DAY 6  </summary>
+
+ </details> 
+
+
+
+
+
+<details> 
+<summary> DAY 7 Basics of Static Timing Analysis </summary>
+	<img width="1203" alt="sta1" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/083d683c-1e6f-4231-a9c8-5ab4fefbc6ac">
 <img width="1215" alt="sta2" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/0eb39ad2-aa51-473f-83fa-e21e7307e0f8">
 <img width="1223" alt="sta3" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/d243fc86-267c-4d3d-9ad3-b0bd4feda82a">
 <img width="1149" alt="sta4" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/bb599909-9108-4910-b498-3833b1b881c1">
@@ -432,24 +473,50 @@ dc_shell is the command line interface for Synopsys's Design Compiler, which is 
 <img width="1184" alt="sta17" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/726a2cf5-65f7-4670-a575-c6868028d800">
 <img width="1215" alt="sta18" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/12039724-7adf-4ea0-9ca5-39bc874e636b">	
 <img width="1134" alt="sta19" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/66abaadd-c04e-4390-8027-8b0acd826d3a">
+ </details> 
 
 
 
+ <details> 
+<summary>  DAY 8  </summary>
+
+ </details> 
+
+<details> 
+<summary>  DAY 9  </summary>
+
+ </details> 
+
+ <details> 
+<summary>  DAY 10  </summary>
+
+ </details> 
+
+ <details> 
+<summary>  DAY 11  </summary>
+
+ </details> 
+
+ <details> 
+<summary>  DAY 12  </summary>
+
+ </details> 
+
+ <details> 
+<summary>  DAY 13  </summary>
+
+ </details> 
+
+ <details> 
+<summary>  DAY 14  </summary>
+
+ </details> 
 
 
+ <details> 
+<summary>  DAY 15  </summary>
 
-
-
-
-
-
-
-
-<summary> DAY 7 Basics of Static Timing Analysis </summary>
-
-
-
-
+ </details> 
 
 
 
