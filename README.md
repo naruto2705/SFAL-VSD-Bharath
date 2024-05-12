@@ -503,10 +503,28 @@ endmodule
 ![Screenshot (73)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/4382dd0c-74f6-4703-8789-05c792060bd4)
 
 
-
-
-
 ![Screenshot (65)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/ce5fc56d-dd56-42ed-8b20-c811e5b5b14a)
+
+```
+csh
+dc_shell
+set target_library /home/bharath/vsd/DC_WORKSHOP/lib/sky130_fd_sc_hd__tt_025C_1v80.db
+set link_library {* $target_library}
+read_db DC_WORKSHOP/lib/sky130_fd_sc_hd__tt_025C_1v80.db
+read_verilog DC_WORKSHOP/verilog_files/lab1_flop_with_en.v
+link
+compile
+write -f verilog -out lab1_net_sky130.v
+sh gvim lab1_net_sky130.v
+
+```
+
+![Screenshot (74)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/15ffd838-025f-4cf5-b582-413df8d16eb5)
+
+
+
+
+
 
 
 ### lab2
