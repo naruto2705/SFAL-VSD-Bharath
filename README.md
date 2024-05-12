@@ -466,24 +466,83 @@ dc_shell is the command line interface for Synopsys's Design Compiler, which is 
 
 #### Labs
 
-lab1
-![Screenshot (65)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/ce5fc56d-dd56-42ed-8b20-c811e5b5b14a)
-![Screenshot (70)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/d2d8fef6-b9a1-40ff-8fb4-4c5497a0f7df)
+### lab1
 
-lab2
+/home/bharath/VLSI/vsd to invoke DC compiler
+
+```
+csh
+dc_shell
+echo $target_library //It generates your_library.db
+echo $link_library
+read_verilog DC_WORKSHOP/verilog_files/lab1_flop_with_en.v
+write -f verilog -out lab1_net.v
+sh gvim lab1_net.v
+
+
+The Verilog syntax of lab1_flop_with_en.v
+
+```
+
+
+```
+module lab1_flop_with_en ( input res , input clk , input d , input en , output reg q);
+always @ (posedge clk , posedge res)
+begin
+	if(res)
+		q <= 1'b0;
+	else if(en)
+		q <= d;	
+end
+endmodule
+
+```
+
+
+![Screenshot (64)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/aea55f4e-d3bf-4a21-931d-7f660d20d628)
+![Screenshot (73)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/4382dd0c-74f6-4703-8789-05c792060bd4)
+
+
+
+
+
+![Screenshot (65)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/ce5fc56d-dd56-42ed-8b20-c811e5b5b14a)
+
+
+### lab2
+
+Commands to write the DDC file
+
+```
+
+write -f verilog -out lab1_net_sky130.v //Command to launch Design Vision 
+
+
+csh
+design_vision
+start_gui //If GUI doesn't start automatically
+
+
+read_ddc lab1.ddc //the command to open DDC 
+
+```
+
 ![labs1](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/a1671961-2770-49d9-9b7a-05c6f5ed5440)
 ![labls3](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/bb687db4-ca34-4948-92d3-73b1b3ed6f77)
 ![labls1](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/b0d240e0-deb1-413a-8ed5-25e9706a79b7)
 
 
 
-lab3
+### lab3
 
 
 <img width="1218" alt="labls2" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/0216bb55-9824-4cf3-9970-f82508ed8ecb">
 
+```
 set target_library /home/sukanya/VLSI/sky130RTLDesignAndSynthesisWorkshop/DC_WORKSHOP/lib/sky130_fd_sc_hd__tt_025C_1v80.db
 set link_library {* $target_library}
+
+```
 ![Screenshot (80)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/c105f03e-6d67-45d4-87f0-472a049f712c)
 
 
