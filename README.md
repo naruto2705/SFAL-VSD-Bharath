@@ -446,6 +446,47 @@ dc_shell is the command line interface for Synopsys's Design Compiler, which is 
  
 <details> 
 <summary>  DAY 6  </summary>
+	
+![ls1](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/62853c10-dab5-4319-8fe2-7349230f517e)
+![ls2](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/930042c7-637d-4cfb-85fc-058a910b1eba)
+![ls3](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/3d2b116b-fcb6-47e6-8b7b-d46ccf12d51f)
+![ls4](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/39f6e15f-cff4-425b-84dc-1fb23f64af4d)
+![ls5](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/7a1f94f1-7935-46ae-9af4-17e893a78c14)
+
+![ls6](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/1a1420d0-3f97-4645-8d3d-3abe8a86850b)
+![ls7](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/d03df6b0-ca22-47bb-996e-385920b4d091)
+![ls8](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/46080c7b-6cd9-4cfd-9117-c97d80687121)
+![ls9](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/87476474-7263-4d4d-8527-edb68a125277)
+![ls10](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/711f06c6-3a7b-470e-8552-92d51bd6921d)
+![ls11](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/eddfac38-f89e-4ddb-8fd5-ea03ee4aa2f7)
+![ls12](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/b23f1e44-2f39-4e3f-a2a7-e4864a709b1c)
+![ls14](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/a0c6f5ce-3e92-404e-bd53-e60569bce10c)
+![ls15](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/65436a34-7def-4dff-874a-f9e9d9d403b0)
+
+
+#### Labs
+
+lab1
+![Screenshot (65)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/ce5fc56d-dd56-42ed-8b20-c811e5b5b14a)
+![Screenshot (70)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/d2d8fef6-b9a1-40ff-8fb4-4c5497a0f7df)
+
+lab2
+![labs1](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/a1671961-2770-49d9-9b7a-05c6f5ed5440)
+![labls3](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/bb687db4-ca34-4948-92d3-73b1b3ed6f77)
+![labls1](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/b0d240e0-deb1-413a-8ed5-25e9706a79b7)
+
+
+
+lab3
+![Screenshot (80)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/c105f03e-6d67-45d4-87f0-472a049f712c)
+
+
+
+
+
+
+
+
 
  </details> 
 
@@ -473,6 +514,19 @@ dc_shell is the command line interface for Synopsys's Design Compiler, which is 
 <img width="1184" alt="sta17" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/726a2cf5-65f7-4670-a575-c6868028d800">
 <img width="1215" alt="sta18" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/12039724-7adf-4ea0-9ca5-39bc874e636b">	
 <img width="1134" alt="sta19" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/66abaadd-c04e-4390-8027-8b0acd826d3a">
+
+
+#### Labs
+
+![stal2](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/ef5a4777-960d-4a48-b76c-48dde69e1c15)
+![Screenshot (71)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/04cb0a62-ca51-45da-a630-065ba1bbd7ee)
+
+![stal1](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/e1b3e240-ce3c-47ce-a2ea-23b5d92b5fe2)
+![stal3](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/e53651f4-a846-4706-ad3b-d99b7f6edd0a)
+
+
+
+ 
  </details> 
 
 
