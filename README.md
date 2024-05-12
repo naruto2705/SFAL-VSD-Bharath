@@ -478,7 +478,15 @@ lab2
 
 
 lab3
+
+
+<img width="1218" alt="labls2" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/0216bb55-9824-4cf3-9970-f82508ed8ecb">
+
+set target_library /home/sukanya/VLSI/sky130RTLDesignAndSynthesisWorkshop/DC_WORKSHOP/lib/sky130_fd_sc_hd__tt_025C_1v80.db
+set link_library {* $target_library}
 ![Screenshot (80)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/c105f03e-6d67-45d4-87f0-472a049f712c)
+
+
 
 
 
@@ -518,10 +526,19 @@ lab3
 
 #### Labs
 
+Delay Table Lookup :
+
+The delay table lookup is a method for the characterization of standard cells in digital circuits. The delay table lookup helps to present the complex delay behaviour by breaking down the delay into smaller components, under specific input conditions. The delay values are stored in a table accessed on input, helping in analyzing delay estimation in the timing analysis. 
+
 ![stal2](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/ef5a4777-960d-4a48-b76c-48dde69e1c15)
 ![Screenshot (71)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/04cb0a62-ca51-45da-a630-065ba1bbd7ee)
 
 ![stal1](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/e1b3e240-ce3c-47ce-a2ea-23b5d92b5fe2)
+
+Unateness : 
+
+1. Positive Unateness:  A rising transition on an input causes the output to rise and vice versa
+2. Negative Unateness: A rising transition on an input causes the output to have a falling transition and vice versa
 ![stal3](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/e53651f4-a846-4706-ad3b-d99b7f6edd0a)
 
 
