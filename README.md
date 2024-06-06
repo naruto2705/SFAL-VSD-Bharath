@@ -620,8 +620,390 @@ Unateness :
 
 
 
- 
+## Labs
+
+
+```
+module lab8_circuit (input rst, input clk , input IN_A , input IN_B , output OUT_Y , output out_clk);
+reg REGA , REGB , REGC ; 
+
+always @ (posedge clk , posedge rst)
+begin
+	if(rst)
+	begin
+		REGA <= 1'b0;
+		REGB <= 1'b0;
+		REGC <= 1'b0;
+	end
+	else
+	begin
+		REGA <= IN_A | IN_B;
+		REGB <= IN_A ^ IN_B;
+		REGC <= !(REGA & REGB); 
+	end
+end
+
+assign OUT_Y = ~REGC;
+
+assign out_clk = clk;
+
+endmodule
+
+```
+
+
+Command flow for verilog to read lab8_circuit.v
+```
+csh
+dc_shell
+read_verilog lab8_circuit.v
+link
+compile_ultra
+```
+
+ATTACH THE PIC
+
+ATTACH THE PIC
+
+ATTACH THE PIC
+
+GET_CELLS commands
+
+```
+get_attribute [get_cells U9] is_hierarchical
+
+```
+
+```
+get_cells * -hier -filter "is_hierarchical == false"
+or
+get_cells * -hier -filter "is_hierarchical == true"
+
+```
+
+ATTACH THE PIC
+
+```
+get_attribute [get_cells REGA_reg] ref_name
+```
+
+```
+foreach_in_collection my_cell [get_cells * -hier] {
+set my_cell_name [get_object_name $my_cell];
+set rname [get_attribute [get_cells $my_cell_name] ref_name];
+echo $my_cell_name $rname;
+}
+```
+
+output:
+
+ATTACH THE PIC
+
+
+```
+write -f ddc -out lab8_circuit.ddc
+```
+
+```
+read_ddc lab8_circuit.ddc
+```
+
+ATTACH THE PIC
+
+
+
+Syntax to get the nets of the design Design Vision
+
+```
+get_nets *
+```
+
+Syntax to check type of net connected to
+
+```
+all_connected N1
+```
+
+ATTACH THE PIC
+
+
+## Lab 2 - get_pins, get_clocks, querying_clocks
+
+Syntax to get all pins
+
+```
+get_pins *
+
+```
+
+Synatx to read all the pins individually
+
+
+```
+
+foreach_in_collection my_pin [get_pins *] {
+set pin_name [get_object_name $my_pin];
+echo $pin_name;
+}
+
+```
+
+OUTPUT:
+
+ATTACH THE PIC
+
+Syntax to check direction of a pin
+
+```
+get_attribute [get_pins REGC_reg/RESET_B] direction
+```
+
+Syntax to know the direction of all pins
+```
+foreach_in_collection my_pin [get_pins *] {
+set my_pin_name [get_object_name $my_pin];
+set dir [get_attribute [get_pins $my_pin_name] direction];
+echo $my_pin_name $dir;
+}
+```
+
+Syntax to get the pins with all the clock attibute
+```
+
+foreach_in_collection my_pin [get_pins *] {                                                                                                                                                                                         set my_pin_name [get_object_name $my_pin];                                                                                                                                                                                            set dir [get_attribute [get_pins $my_pin_name] direction];                                                                                                                                                                    if { [regexp $dir in] } {
+if { [get_attribute [get_pins $my_pin_name] clock ] } {
+echo $my_pin_name;
+}
+}
+}
+
+
+```
+
+Syntax of query_clock_pin_sm.tcl
+```
+
+foreach_in_collection my_pin [get_pins *] {
+	set my_pin_name [get_object_name $my_pin];
+        set dir [get_attribute [get_pins $my_pin_name] direction];                                                                                              
+	if { [regexp $dir in] } {
+		if { [get_attribute [get_pins $my_pin_name] clock ] } { 
+ 			echo $my_pin_name;
+
+		}
+	}
+}
+
+
+```
+
+ATTACH THE PIC
+
+ATTACH THE PIC
+
+## Lab 3 - create_clock waveform
+
+Syntax to create a clock with period of 10ns
+
+```
+create_clock -name MYCLK -period 10 [get_ports clk]
+
+```
+
+Syntax to get the period of the clock
+```
+get_clocks *
+```
+
+Syntax to check whether the clock is generated or not. If false then it is a master clock.
+```
+get_attribute [get_clocks MYCLK] period
+```
+
+Syntax to know the information about all clock
+```
+report_clocks *
+```
+
+ATTACH THE PIC
+
+Syntax to query the attributes of all clock pins
+
+```
+foreach_in_collection my_pin [get_pins *] {
+	set my_pin_name [get_object_name $my_pin];
+        set dir [get_attribute [get_pins $my_pin_name] direction];                                                                                              
+	if { [regexp $dir in] } {
+		if { [get_attribute [get_pins $my_pin_name] clock ] } { 
+			set clk [get_attribute [get_pins $my_pin_name] clocks]; # 	set clk_name [get_object_name [get_attribute [get_pins $my_pin_name] clocks]];
+			set clk_name [get_object_name $clk];
+ 			echo $my_pin_name $clk_name;
+
+		}
+	}
+}
+```
+
+Output is shown below
+
+ATTACH THE PIC
+
+Do not create a clock on the pin but rather create one on the port. The clock created on the pin will not reach to any pin of any flop.
+
+Syntax to remove the clock, BAD_CLK is the clock name
+
+```
+remove_clock BAD_CLK
+```
+
+```
+create_clock -name MYCLK -period 10 [get_ports clk] -wave {5 10}
+```
+
+```
+create_clock -name MYCLK -period 10 -wave {0 2.5} [get_ports clk]
+```
+
+The order of command doesn't matter when creating a clock.
+
+
+### Lab 4 - Clock Network Modelling - Uncertainty, report_timing
+
+Syntax to model the source latency
+
+```
+set_clock_latency -source 1 [get_clocks MYCLK]
+```
+
+Syntax to model the network latency
+```
+set_clock_latency 1 [get_clocks MYCLK]
+```
+
+Syntax to model uncertainity for max delay or setup which is default
+```
+set_clock_uncertainty 0.5 [get_clocks MYCLK]
+```
+
+Syntax to model uncertainity for max delay or hold
+```
+set_clock_uncertainty -hold 0.1 [get_clocks MYCLK]
+```
+
+If no clock is present, report_timing shows path is unconstrained
+
+Syntax to report clock to register
+
+```
+report_timing -to REGC_reg/D
+```
+
+ATTACH THE PIC
+
+After modeling the clock for following commands
+
+```
+dc_shell> set_clock_latency -source 2 [get_clocks MYCLK]
+1
+dc_shell> set_clock_latency 1 [get_clocks MYCLK]
+1
+dc_shell> set_clock_uncertainty 0.5 [get_clocks MYCLK]
+1
+dc_shell> set_clock_uncertainty -hold 0.1 [get_clocks MYCLK]
+```
+
+ATTACH THE PIC
+
+
+Lab 5 - IO Delays
+
+
+Syntax to know the modeling of ports and pins
+```
+report_port verbose
+```
+
+
+Syntax to model the input port delay
+
+```
+set_input_delay -max 5 -clock [get_clocks MYCLK] [get_ports IN_A]
+```
+
+Syntax to know the timing around port IN_A
+
+```
+report_timing -from IN_A
+```
+
+ATTACH THYE PIC
+
+Syntax to model the transition in port IN_A and write to a file a
+
+```
+report_timing -from IN_A -trans -net -cap -nosplit > a
+```
+
+ATTACH THE PIC
+
+Syntax to set the hold time for port IN_A(or IN_B)
+
+```
+set_input_delay -min 1 -clock [get_clocks MYCLK] [get_ports IN_A]
+```
+Syntax to check the hold timing for port IN_A
+
+```
+report_timing -from IN_A -trans -net -cap -nosplit -delay_type min > a
+```
+
+ATTACH THE PIC
+
+Syntax to set a max transition for port IN_A
+
+```
+set_input_transition -max 0.3 [get_ports IN_A]
+```
+
+Syntax to set min transition for port IN_A
+
+```
+set_input_transition -min 0.1 [get_ports IN_A]
+```
+
+Syntax to model the max delay of output port
+
+```
+set_output_delay -max 5 -clock [get_clocks MYCLK] [get_ports OUT_Y]
+```
+
+Syntax to model the min delay of output port
+
+```
+set_output_delay -min 1 -clock [get_clocks MYCLK] [get_ports OUT_Y]
+```
+
+Syntax to model a max load for output port
+
+```
+set_load -max 0.4 [get_ports OUT_Y]
+```
+
+Syntax to model a min load for output port
+
+```
+set_load -min 0.1 [get_ports OUT_Y]
+```
+
+3 - Generated Clock
+
+
+
+
+
+
  </details> 
+
 
 
 
