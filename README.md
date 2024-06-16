@@ -1063,6 +1063,207 @@ References
  <details> 
 <summary>  DAY 12  </summary>
 
+Recap on SoC
+
+    SoC is a single-die chip that has some different IP cores on it. These IPs could vary from microprocessors (completely digital) to 5G broadband modems (completely analog).
+    SoC with equivalent functionality will have increased performance and reduced power consumption as well as a smaller semiconductor die area.
+
+What does modelling mean?(electronics terminology)
+
+    Modeling and simulation is the use of a physical or logical representation of a given system to generate data and help determine decisions or make predictions about the system.
+    Models are representations that can aid in defining, analyzing, and communicating a set of concepts. M&S is widely used in the VLSI domain.
+    System models are specifically developed to
+        support analysis, specification,
+        design,
+        verification,
+        and validation of a system,
+        as well as to communicate certain information.
+
+What are we modelling?
+
+    Let us look into VSDBabySoC modelling. Here we are going to model and simulate the VSDBabySoC
+    Some initial input signals will be fed into vsdbabysoc module,
+    That will get the pll start generating the proper CLK for the circuit.
+    The clock signal will make the rvmyth to execute instructions and some values are generated, these values are used by DAC core to provide the final output signal named OUT.
+    So we have 3 main elements (IP cores) and a wrapper as an SoC and of-course there would be also a testbench module out there.
+
+This weeks task is to model the 3 main IP cores
+
+    RVMYTH modelling
+    PLL modelling
+    DAC modelling Before that lets understand how each component works.
+
+RVMYTH - Risc-V based MYTH (Microprocessor for You in Thirty Hours)
+
+    RISC stands for Reduced instruction set computer
+    RISC-V(pronounced “risk-five”) ISA is defined as a base integer ISA, which must be present in any implementation, plus optional extensions to the base ISA.
+    Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers.
+    There are two primary base integer variants, RV32I and RV64I.
+
+
+
+<img width="873" alt="11c1" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/693d89a6-7aa9-4bd4-8158-70c4ffb5c3fb">
+<img width="916" alt="11c2" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/487b5fcf-443c-4c53-ae90-17912cf9d1fb">
+
+
+
+Phase Locked Loop
+
+    A phase-locked loop (PLL) is an electronic circuit with a voltage or voltage-driven oscillator that constantly adjusts to match the frequency of an input signal.
+    PLLs are used to generate, stabilize, modulate, demodulate etc
+    Now, question is why do we need a PLL for our SoC?
+    Before that how is a clock generated? Quartz crystal oscillator. For 100Mhz and below off chip oscillator will do, but for 100Mhz and above it won’t be good enough.-how?
+
+Why off-chip clocks can’t be used all the time?
+
+    The clock will be a supply for a lot of blocks on the chip, it will have delays due to long wires(if used only one clock source) - also reasons like clock jitter
+    Some blocks might need 200Mhzs and some might need 100Mhz - point is different frequencies just on one small chip
+    A concept of ppm(clock accuracy) comes in, when ever quartz is acquired, it comes with a x ppm error
+
+What is this ppm error? {ppm - parts per million}
+
+    For ex: 20ppm quartz used in watches this translates as 20/1e6 (2e-5) which gives an error over a day of 86400 * 2e-5 = 1.73 seconds per day so in a month it loses 30 x1.72 = 51 seconds or 1 minute a month
+    Now, in terms of a chip, just imagine the mishap it will cause just due to very small error for ,microseconds, when the processor works at nanoseconds -------- it can be a huge blow.
+
+<img width="958" alt="11c3" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/f11e7b7c-b1a7-4a87-896e-68f639e3d1ca">
+
+<img width="895" alt="11c4" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/b874e87e-b883-45df-a6c0-cb3fea94031d">
+
+Digital-to-Analog Converter
+
+    A Digital-to-Analog Converter (DAC) converts a digital input signal into an analog output signal.
+    The digital signal is represented with a binary code, which is a combination of bits 0 and 1. A Digital to Analog Converter (DAC) consists of a number of binary inputs and a single output.
+    In general, the number of binary inputs of a DAC will be a power of two.
+    There are two types of DACs : a) Weighted Resistor DAC b) R-2R Ladder DAC
+
+    
+<img width="900" alt="11c5" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/df5c50a3-e0a5-4f25-ad35-15c4283f9f11">
+
+<img width="891" alt="11c6" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/2a66bde1-b59b-4978-a2f6-de9692f959b3">
+
+<img width="895" alt="11c7" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/c0b059e7-2124-446a-a923-d185c751168d">
+
+
+Let's start modelling
+
+    RVMYTH is a digital block, so yes we can use a HDL for designing and check its functionality using a testbench.
+    But! DAC and PLL are analog what to do?
+    Because verilog can’t synthesis analog design
+    We are going to simulate it using verilog - we will be using data-types such real.
+    Our goal is to be able to simulate “functionality” - to verify its logical correctness.
+
+Tools used for pre-synthesis modeling
+
+So we will be using verilog to model - and use iverilog to compile and simulate. Use GTKWave to see the waveforms & debug.
+
+How do we model and simulate them?
+
+    We will be using iverilog - Icarus Verilog is an implementation of the Verilog hardware description language compiler that generates netlists in the desired format. It supports the 1995, 2001 and 2005 versions of the standard, portions of SystemVerilog, and some extensions.
+    Modelling and simulating on iverilog involves 2 main steps, namely:
+
+    Compilation - iverilog builds the instance hierarchy and generates a binary executable a.out. This binary executable is later used for simulation.
+    Simulation - During compilation, iverilog generates a binary executable.
+
+
+
+
+    
+<img width="900" alt="11c8" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/6e01f32b-cda8-4b28-9bc9-992479115441">
+
+
+## LAB
+
+
+Steps to be followed for pre-synthesis modeling of BabySoC
+
+The repo used for the reference is - https://github.com/manili/VSDBabySoC?tab=readme-ov-file#step-by-step-modeling-walkthrough
+
+1. Make sure that the tools iverilog and GTKwave are properly installed.
+
+
+2. Install sandpiper-saas with the following commands
+   
+```
+    cd ~
+pip3 install pyyaml click sandpiper-saas
+
+```
+
+3. After installing, check if sandpiper-saas is present in the path with the command which sandpiper-saas. You should get a local path name as shown below.
+
+```
+   [bharath@sfalvsd ~]$ which sandpiper-saas
+~/.local/bin/sandpiper-saas
+```
+
+If it is not present, add it to your .bashrc file using the command
+
+```
+gedit ~/.bashrc
+export PATH=$PATH:/home/sukanya/.local/bin
+```
+
+4. Now we can clone this repository in an arbitrary directory (we'll choose home directory here):
+
+```
+cd ~
+git clone https://github.com/manili/VSDBabySoC.git
+```
+
+5. RVMYTH is designed and created by the TL-Verilog language. So we need a way for compile and transform it to the Verilog language and use the result in our SoC. Here the sandpiper-saas will help us do the job.
+
+```
+cd VSDBabySoC
+sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/
+
+```
+
+The last command translates .tlv definition of rvmyth into .v definition.
+
+6. Create an output directory inside VSDBabySoC using the command mkdir output.
+
+7. Compile and Simulate the design.
+
+```
+    iverilog -o output/pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module
+    cd output
+    ./pre_synth_sim.out
+```
+
+8. Open simulation waveform in GTKwave tool
+
+```
+gtkwave pre_synth_sim.out
+
+```
+
+
+<img width="891" alt="11c9" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/ad9fcdd6-f044-43ba-b9a7-896d1734e006">
+<img width="919" alt="11c10" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/23a0ab8c-2e4b-4a27-9da6-778cb78dd191">
+
+
+
+In this picture we can see the following signals:
+
+CLK: This is the input CLK signal of the RVMYTH core. This signal comes from the PLL, originally.
+reset: This is the input reset signal of the RVMYTH core. This signal comes from an external source, originally.
+OUT: This is the output OUT signal of the VSDBabySoC module. This signal comes from the DAC (due to simulation restrictions it behaves like a digital signal which is incorrect), originally.
+RV_TO_DAC[9:0]: This is the 10-bit output [9:0] OUT port of the RVMYTH core. This port comes from the RVMYTH register #17, originally.
+OUT: This is a real datatype wire which can simulate analog values. It is the output wire real OUT signal of the DAC module. This signal comes from the DAC, originally. This can be viewed by changing the Data Format of the signal to Analog -> Step .
+
+PLEASE NOTE that the sythesis process does not support real variables, so we must use the simple wire datatype for the \vsdbabysoc.OUT instead. The iverilog simulator always behaves wire as a digital signal. As a result we can not see the analog output via \vsdbabysoc.OUT port and we need to use \dac.OUT (which is a real datatype) instead.
+
+
+
+
+
+
+
+
+
+
+
+
  </details> 
 
  <details> 
