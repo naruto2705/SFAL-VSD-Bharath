@@ -1170,6 +1170,9 @@ How do we model and simulate them?
     
 <img width="900" alt="11c8" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/6e01f32b-cda8-4b28-9bc9-992479115441">
 
+<img width="891" alt="11c9" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/ad9fcdd6-f044-43ba-b9a7-896d1734e006">
+<img width="919" alt="11c10" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/23a0ab8c-2e4b-4a27-9da6-778cb78dd191">
+
 
 ## LAB
 
@@ -1238,8 +1241,7 @@ gtkwave pre_synth_sim.out
 ```
 
 
-<img width="891" alt="11c9" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/ad9fcdd6-f044-43ba-b9a7-896d1734e006">
-<img width="919" alt="11c10" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/23a0ab8c-2e4b-4a27-9da6-778cb78dd191">
+
 
 
 
@@ -1269,6 +1271,243 @@ PLEASE NOTE that the sythesis process does not support real variables, so we mus
  <details> 
 <summary>  DAY 13  </summary>
 
+Reference github repositories
+
+    https://github.com/nurnazahah/sd-training/blob/main/readme.md#day-12
+    https://github.com/Devipriya1921/VSDBabySoC_ICC2/blob/main/vsdbabysoc.sdc
+
+
+## Synthesizable and non-synthesizable constructs in verilog
+
+
+## Why do pre-synthesis? Why cannot just do post-synthesis?
+
+    Pre-synthesis simulation is done according to the logic that we have designed for and written -> only functionality
+    Post synthesis simulation/GLS (gate level simulation) is done after synthesis considering each gate delays into account, also reports the violations in both functionality and timing
+    This will show the mismatches that are likely to get due to the wrong usage of operators and inference of latches i.e. using ‘X’ (simulator/synthesizer terms) as ‘Unknown’/‘Don’t care’
+
+## Gate Level Simulation (GLS)
+
+    'gate level' refers to netlist view of a circuit, usually produced by logic synthesis
+    RTL simulation is pre-synthesis while GLS is post-synthesis
+    Netlist view is a complete connection list consisting of gates and IP models with full functional and timing behavior
+    RTL simulation is zero delay environment and events, generally occurs on the active clock edge. Whereas GLS can be zero delay too, but it is more often used in unit delay or full timing mode
+
+Note: Gate level simulation is used to boost the confidence regarding implementation of a design and can help verify dynamic circuit behaviour, which cannot be verified accurately by static methods. It is a significant step in the verification process.
+Tools used to synthesize the netlist
+
+    Using synopsys’s DC shell (Design Compiler)
+    DC RTL synthesis solution enables users to meet today's design challenges with concurrent optimization of timing, area, power and test.
+
+## Why post-synthesis simulation is needed?
+
+    To ensure each and every gate delays are taken into account
+    Pre-synthesis in iverilog and GTKwave that has done from the previous labs would be compared
+    To observe the output generated
+    Note that post-simulation output should be matched with pre-simulation output
+
+
+![13c1](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/12c725fd-d7b0-4c88-832c-9904f781394f)
+
+
+ Lab - Converting .lib file to .db file
+
+Use the link for reference - https://github.com/nurnazahah/sd-training/blob/main/readme.md#topic-post-synthesis-simulation
+
+
+Converting .lib file to .db file
+
+The first step is to convert .lib file to .db file. We need .db format for avsddac.lib, avsdpll.lib & sky130_fd_sc_hd__tt_025C_1v80.lib using Synopsys Library Compiler (lc_shell).
+
+The .lib files, avsddac.lib, avsdpll.lib, and sky130_fd_sc_hd__tt_025C_1v80.lib are present in the location /home/sukanya/VSDBabySoC/src/lib.
+Converting avsddac.lib file to avsddac.db file
+
+Syntax to convert the avsddac.lib files to avsddac.db
+
+```
+cd /home/bharath/VSDBabySoC/src/lib
+lc_shell
+read_lib avsddac.lib
+write_lib avsddac -format db -output avsddac.db
+
+```
+
+The conversion of avsddac.lib to avsddac.db is successful as shown in screenshot below. If the code runs successfully, it will return 1.
+
+(ATTACH THE PIC)
+
+
+Converting avsdpll.lib file to avsdpll.db file
+
+Syntax to convert the avsdpll.lib files to avsdpll.db
+
+
+```
+cd /home/sukanya/VSDBabySoC/src/lib
+lc_shell
+read_lib avsdpll.lib
+write_lib avsdpll -format db -output avsdpll.db
+```
+
+
+The read_lib command shows some errors for avsdpll.lib. The errors are shown below.\
+
+ATTACH THE PIC
+
+
+The modification for avsdpll.lib is highlighted in the right with the original shown on the left. The power VDD and ground GND pins are removed along with other commented parts.
+
+(ATTACH THE PIC)
+
+After the modification, the avsdpll.lib is converted to avsdpll.db successfully.
+
+
+(ATTACH THE PIC)
+
+
+Converting sky130_fd_sc_hd__tt_025C_1v80.lib file to asky130_fd_sc_hd__tt_025C_1v80.db file
+
+Download the latest sky130_fd_sc_hd__tt_025C_1v80.lib from the path - https://github.com/efabless/skywater-pdk-libs-sky130_fd_sc_hd/tree/master/timing Synatx to download the raw file in Linux
+
+```
+wget https://raw.githubusercontent.com/efabless/skywater-pdk-libs-sky130_fd_sc_hd/master/timing/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+
+Syntax to convert the sky130_fd_sc_hd__tt_025C_1v80.lib files to sky130_fd_sc_hd__tt_025C_1v80.db
+
+```
+cd /home/bharath/VSDBabySoC/src/lib
+lc_shell
+read_lib sky130_fd_sc_hd__tt_025C_1v80.lib
+write_lib sky130_fd_sc_hd__tt_025C_1v80 -format db -output sky130_fd_sc_hd__tt_025C_1v80.db
+```
+
+The screenshot for successful conversion is shown below.
+
+(ATTACH THE PIC)
+
+## LAB: Synthesis and Post Synthesis (Gate Level) Simulation 
+
+Syntax to perform synthesis
+
+```
+cd /home/sukanya/VSDBabySoC
+dc_shell
+set target_library /home/sukanya/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db
+set link_library {* /home/sukanya/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/sukanya/VSDBabySoC/src/lib/avsdpll.db /home/sukanya/VSDBabySoC/src/lib/avsddac.db}
+set search_path {/home/sukanya/VSDBabySoC/src/include /home/sukanya/VSDBabySoC/src/module} 
+read_file {sandpiper_gen.vh  sandpiper.vh  sp_default.vh  sp_verilog.vh clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v} -autoread -top vsdbabysoc 
+link 
+compile_ultra
+write_file -format verilog -hierarchy -output /home/sukanya/VSDBabySoC/output/vsdbabysoc_net.v
+report_qor > report_qor.txt
+```
+
+(ATTACH THE PIC)
+(ATTACH THE PIC)
+
+
+The quality of report is saved in the file report_qor.txt.
+
+Syntax to perform post-synthesis simulation
+
+```
+cd /home/bharath/VSDBabySoC
+iverilog -DFUNCTIONAL -DUNIT_DELAY=#1 -o ./output/post_synth_sim.out ./src/gls_model/primitives.v ./src/gls_model/sky130_fd_sc_hd.v ./output/vsdbabysoc_net.v ./src/module/avsdpll.v ./src/module/avsddac.v ./src/module/testbench.v
+cd output
+./post_synth_sim.out
+gtkwave dump.vcd
+```
+
+The output of GLS is shown below. 
+(ATTACH THE PIC)
+
+Comparing the post-synthesis (top) and pre-synthesis (bottom) output shows they match.
+(ATTACH THE PIC)
+
+
+## Lab - Synthesis with SDC Constraints
+
+SDC constraints are written in file vsdbabysoc_synthesis.sdc under the folder /home/bharath/VSDBabySoC/src/sdc. The constraints are
+
+```
+set_units -time ns
+set_max_area 8000
+set_load -pin_load 0.5 [get_ports OUT]
+set_load -min -pin_load 0.5 [get_ports OUT]
+create_clock [get_pins pll/CLK] -name clk -period 10 -waveform {0 5}
+set_clock_latency 1 [get_clocks clk]
+set_clock_latency -source 2 [get_clocks clk]
+set_clock_uncertainty 0.5  [get_clocks clk]
+set_max_delay 10 -from [get_pins dac/OUT] -to [get_ports OUT]
+set_input_delay -clock clk -max 4 [get_ports VCO_IN]
+set_input_delay -clock clk -min 1 [get_ports VCO_IN]
+set_input_delay -clock clk -max 4 [get_ports ENb_CP]
+set_input_delay -clock clk -min 1 [get_ports ENb_CP]
+set_input_transition -max 0.4 [get_ports VCO_IN]
+set_input_transition -min 0.1 [get_ports VCO_IN]
+set_input_transition -max 0.4 [get_ports ENb_CP]
+set_input_transition -min 0.1 [get_ports ENb_CP]
+```
+
+Syntax to perform synthesis with SDC constraints
+
+```
+dc_shell
+set target_library /home/sukanya/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db
+set link_library {* /home/sukanya/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/sukanya/VSDBabySoC/src/lib/avsdpll.db /home/sukanya/VSDBabySoC/src/lib/avsddac.db}
+set search_path {/home/sukanya/VSDBabySoC/src/include /home/sukanya/VSDBabySoC/src/module} 
+read_file {sandpiper_gen.vh  sandpiper.vh  sp_default.vh  sp_verilog.vh clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v} -autoread -top vsdbabysoc 
+link
+read_sdc /home/bharath/VSDBabySoC/src/sdc/vsdbabysoc_synthesis.sdc
+compile_ultra
+write_file -format verilog -hierarchy -output /home/sukanya/VSDBabySoC/output/vsdbabysoc_net_sdc.v
+report_qor > report_qor_sdc.txt
+report_timing -nets -attributes -input_pins -transition_time -delay_type max > report_setup_sdc.txt
+report_timing -nets -attributes -input_pins -transition_time -delay_type min > report_hold_sdc.txt
+```
+
+The quality of report is saved in the file report_qor_sdc.txt and timing reports are saved in the files report_setup_sdc.txt and report_hold_sdc.txt
+
+Syntax to perform post-synthesis with SDC constraints simulation
+
+```
+cd /home/bharath/VSDBabySoC
+iverilog -DFUNCTIONAL -DUNIT_DELAY=#1 -o ./output/post_synth_sdc_sim.out ./src/gls_model/primitives.v ./src/gls_model/sky130_fd_sc_hd.v ./output/vsdbabysoc_net_sdc.v ./src/module/avsdpll.v ./src/module/avsddac.v ./src/module/testbench.v
+cd output
+./post_synth_sdc_sim.out
+gtkwave dump.vcd
+```
+
+The output of GLS with SDC constraints is shown below. 
+
+(ATTACH THE PIC)
+
+Comparing the post-synthesis with sdc constraints (top) and pre-synthesis (bottom) output shows they match in behavior but output value varies.
+
+(ATTACH THE PIC)
+
+## Analysis with and without SDC
+
+Comparing the QoR without SDC and with SDC shows that clk is not considered when SDC wasn't included.
+
+
+
+(ATTACH THE PIC)
+
+
+(ATTACH THE REPORT)
+
+
+
+
+
+
+
+
+
+
+
  </details> 
 
  <details> 
@@ -1279,6 +1518,32 @@ PLEASE NOTE that the sythesis process does not support real variables, so we mus
 
  <details> 
 <summary>  DAY 15  </summary>
+
+ </details> 
+
+  <details> 
+<summary>  DAY 16  </summary>
+
+ </details> 
+
+
+  <details> 
+<summary>  DAY 17  </summary>
+
+ </details> 
+
+  <details> 
+<summary>  DAY 18  </summary>
+
+ </details> 
+
+  <details> 
+<summary>  DAY 19  </summary>
+
+ </details> 
+
+  <details> 
+<summary>  DAY 20  </summary>
 
  </details> 
 
