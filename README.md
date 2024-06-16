@@ -1025,6 +1025,25 @@ set_load -min 0.1 [get_ports OUT_Y]
  <details> 
 <summary>  DAY 11  </summary>
 
+<img width="1255" alt="10c1" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/a266598c-61ee-4408-bb69-c313f98ec8d0">
+<img width="1336" alt="10c2" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/aa28e161-3c1b-4f1a-8219-0c46853175ad">
+<img width="1375" alt="10c3" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/554b19eb-99ab-4691-9c6d-544eb19819ef">
+<img width="1362" alt="10c4" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/7e61720e-97de-42b6-bb7a-1e8c04f4d150">
+
+<img width="713" alt="10c5" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/82220abd-edad-4ace-880b-0c3dc0bec63a">
+
+<img width="1356" alt="10c6" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/23613151-df77-4c73-a8e8-8cced202cf93">
+<img width="1283" alt="10c7" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/ada1f103-6191-415a-a677-3f160e98d90d">
+<img width="1299" alt="10c8" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/b0a52d5f-181e-41a6-98f7-cd851548ca06">
+<img width="1309" alt="10c9" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/1d71442b-bb51-445f-8db0-669c5dd67753">
+
+
+
+
+
+
+
+
  </details> 
 
  <details> 
