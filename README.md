@@ -1038,6 +1038,20 @@ set_load -min 0.1 [get_ports OUT_Y]
 <img width="1309" alt="10c9" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/1d71442b-bb51-445f-8db0-669c5dd67753">
 
 
+GitHub Reps’s
+
+    manili/VSDBabySoC: VSDBabySoC is a small mixed-signal SoC including PLL, DAC, and a RISCV-based processor named RVMYTH.(https://github.com/manili/VSDBabySoC#what-is-rvmyth)
+    Devipriya1921/avsddac28nm (https://github.com/Devipriya1921/avsddac28nm)
+    reneann713/PLL (https://github.com/ireneann713/PLL)
+    lakshmi-sathi/avsdpll_1v8: 8x PLL Clock Multiplier IP with an input frequency range of 5Mhz to 12.5Mhz and output frequency range of 40Mhz to 100Mhz, giving a 8x multiplied clock at ~50% duty cycle on tt corner at room temperature. (https://github.com/lakshmi-sathi/avsdpll_1v8)
+
+References
+
+    https://microcontrollerslab.com/system-on-chip-soc-introduction/
+    https://github.com/Devipriya1921/VSDBabySoC_ICC2
+
+
+
 
 
 
