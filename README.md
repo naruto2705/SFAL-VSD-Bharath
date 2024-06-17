@@ -1391,11 +1391,11 @@ The screenshot for successful conversion is shown below.
 Syntax to perform synthesis
 
 ```
-cd /home/sukanya/VSDBabySoC
+cd /home/bharath/VSDBabySoC
 dc_shell
-set target_library /home/sukanya/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db
-set link_library {* /home/sukanya/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/sukanya/VSDBabySoC/src/lib/avsdpll.db /home/sukanya/VSDBabySoC/src/lib/avsddac.db}
-set search_path {/home/sukanya/VSDBabySoC/src/include /home/sukanya/VSDBabySoC/src/module} 
+set target_library /home/bharath/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db
+set link_library {* /home/bharath/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/sukanya/VSDBabySoC/src/lib/avsdpll.db /home/sukanya/VSDBabySoC/src/lib/avsddac.db}
+set search_path {/home/bharath/VSDBabySoC/src/include /home/sukanya/VSDBabySoC/src/module} 
 read_file {sandpiper_gen.vh  sandpiper.vh  sp_default.vh  sp_verilog.vh clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v} -autoread -top vsdbabysoc 
 link 
 compile_ultra
@@ -1454,9 +1454,9 @@ Syntax to perform synthesis with SDC constraints
 
 ```
 dc_shell
-set target_library /home/sukanya/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db
-set link_library {* /home/sukanya/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/sukanya/VSDBabySoC/src/lib/avsdpll.db /home/sukanya/VSDBabySoC/src/lib/avsddac.db}
-set search_path {/home/sukanya/VSDBabySoC/src/include /home/sukanya/VSDBabySoC/src/module} 
+set target_library /home/bharath/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db
+set link_library {* /home/bharath/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/sukanya/VSDBabySoC/src/lib/avsdpll.db /home/sukanya/VSDBabySoC/src/lib/avsddac.db}
+set search_path {/home/bharath/VSDBabySoC/src/include /home/sukanya/VSDBabySoC/src/module} 
 read_file {sandpiper_gen.vh  sandpiper.vh  sp_default.vh  sp_verilog.vh clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v} -autoread -top vsdbabysoc 
 link
 read_sdc /home/bharath/VSDBabySoC/src/sdc/vsdbabysoc_synthesis.sdc
@@ -1512,6 +1512,44 @@ Comparing the QoR without SDC and with SDC shows that clk is not considered when
 
  <details> 
 <summary>  DAY 14  </summary>
+
+Download the timing libraries in the path /home/bharath/VSDBabySoC/src/timing_libs from https://github.com/efabless/skywater-pdk-libs-sky130_fd_sc_hd/tree/master/timing
+
+
+Syntax to convert .lib to .db for each
+
+```
+cd /home/bharath/VSDBabySoC/src/timing_libs
+lc_shell
+read_lib sky130_fd_sc_hd__ff_100C_1v65.lib
+write_lib sky130_fd_sc_hd__ff_100C_1v65 -format db -output sky130_fd_sc_hd__ff_100C_1v65.db
+```
+
+
+Syntax to perform synthesis with SDC constraints
+
+```
+cd /home/bharath/VSDBabySoC
+dc_shell
+set target_library /home/bharath/VSDBabySoC/src/timing_libs/sky130_fd_sc_hd__ff_100C_1v65.db
+set link_library {* /home/bharath/VSDBabySoC/src/timing_libs/sky130_fd_sc_hd__ff_100C_1v65.db /home/sukanya/VSDBabySoC/src/lib/avsdpll.db /home/sukanya/VSDBabySoC/src/lib/avsddac.db}
+set search_path {/home/bharath/VSDBabySoC/src/include /home/sukanya/VSDBabySoC/src/module} 
+read_file {sandpiper_gen.vh  sandpiper.vh  sp_default.vh  sp_verilog.vh clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v} -autoread -top vsdbabysoc 
+link
+read_sdc /home/sukanya/VSDBabySoC/src/sdc/vsdbabysoc_synthesis.sdc
+compile_ultra
+write_file -format verilog -hierarchy -output /home/sukanya/VSDBabySoC/output/vsdbabysoc_net_ff_100C_1v65.v
+report_qor > report/report_qor_ff_100C_1v65.txt
+```
+
+Repeat the above process for all the PVT corners inside timing_libs Table below shows the Worst Negative Slack (WNS) and Worst Hold Slack (WHS) for PVT corners
+
+(ATTACH THE PIC)
+
+They are represented in graphical format as follows
+
+(ATTACH THE PIC)
+
 
  </details> 
 
