@@ -1038,7 +1038,7 @@ set_load -min 0.1 [get_ports OUT_Y]
 <img width="1309" alt="10c9" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/1d71442b-bb51-445f-8db0-669c5dd67753">
 
 
-GitHub Reps’s
+GitHub Repos’s for reference
 
     manili/VSDBabySoC: VSDBabySoC is a small mixed-signal SoC including PLL, DAC, and a RISCV-based processor named RVMYTH.(https://github.com/manili/VSDBabySoC#what-is-rvmyth)
     Devipriya1921/avsddac28nm (https://github.com/Devipriya1921/avsddac28nm)
@@ -1063,21 +1063,20 @@ References
  <details> 
 <summary>  DAY 12  </summary>
 
-Recap on SoC
+SoC and What does modelling mean?
 
-    SoC is a single-die chip that has some different IP cores on it. These IPs could vary from microprocessors (completely digital) to 5G broadband modems (completely analog).
-    SoC with equivalent functionality will have increased performance and reduced power consumption as well as a smaller semiconductor die area.
+    SoC is a single-die chip has some different IP cores that could vary from microprocessors (completely digital) to 5G broadband modems (completely analog).
+    SoC with equivalent functionality will have increased performance and reduced power consumption as well as a smaller semiconductor die area(PPA).
 
-What does modelling mean?(electronics terminology)
 
-    Modeling and simulation is the use of a physical or logical representation of a given system to generate data and help determine decisions or make predictions about the system.
+
+    Modeling and simulation involves use of a physical or logical representation of a given system to generate data and help determine decisions or make predictions about the system.
     Models are representations that can aid in defining, analyzing, and communicating a set of concepts. M&S is widely used in the VLSI domain.
     System models are specifically developed to
         support analysis, specification,
-        design,
-        verification,
-        and validation of a system,
-        as well as to communicate certain information.
+        design, and architectural planning
+        verification, and validation of a system,
+	Enhance communication related to system and functionality.
 
 What are we modelling?
 
@@ -1087,18 +1086,12 @@ What are we modelling?
     The clock signal will make the rvmyth to execute instructions and some values are generated, these values are used by DAC core to provide the final output signal named OUT.
     So we have 3 main elements (IP cores) and a wrapper as an SoC and of-course there would be also a testbench module out there.
 
-This weeks task is to model the 3 main IP cores
+The task is to model the 3 main IP cores
 
-    RVMYTH modelling
-    PLL modelling
-    DAC modelling Before that lets understand how each component works.
+   1. RVMYTH 
+   2. PLL 
+   3. DAC 
 
-RVMYTH - Risc-V based MYTH (Microprocessor for You in Thirty Hours)
-
-    RISC stands for Reduced instruction set computer
-    RISC-V(pronounced “risk-five”) ISA is defined as a base integer ISA, which must be present in any implementation, plus optional extensions to the base ISA.
-    Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers.
-    There are two primary base integer variants, RV32I and RV64I.
 
 
 
@@ -1132,8 +1125,6 @@ What is this ppm error? {ppm - parts per million}
 Digital-to-Analog Converter
 
     A Digital-to-Analog Converter (DAC) converts a digital input signal into an analog output signal.
-    The digital signal is represented with a binary code, which is a combination of bits 0 and 1. A Digital to Analog Converter (DAC) consists of a number of binary inputs and a single output.
-    In general, the number of binary inputs of a DAC will be a power of two.
     There are two types of DACs : a) Weighted Resistor DAC b) R-2R Ladder DAC
 
     
@@ -1181,7 +1172,7 @@ Steps to be followed for pre-synthesis modeling of BabySoC
 
 The repo used for the reference is - https://github.com/manili/VSDBabySoC?tab=readme-ov-file#step-by-step-modeling-walkthrough
 
-1. Make sure that the tools iverilog and GTKwave are properly installed.
+1. check the installation iverilog and GTKwave.
 
 
 2. Install sandpiper-saas with the following commands
@@ -1199,13 +1190,6 @@ pip3 install pyyaml click sandpiper-saas
 ~/.local/bin/sandpiper-saas
 ```
 
-If it is not present, add it to your .bashrc file using the command
-
-```
-gedit ~/.bashrc
-export PATH=$PATH:/home/sukanya/.local/bin
-```
-
 4. Now we can clone this repository in an arbitrary directory (we'll choose home directory here):
 
 ```
@@ -1218,7 +1202,6 @@ git clone https://github.com/manili/VSDBabySoC.git
 ```
 cd VSDBabySoC
 sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/
-
 ```
 
 The last command translates .tlv definition of rvmyth into .v definition.
@@ -1233,27 +1216,16 @@ The last command translates .tlv definition of rvmyth into .v definition.
     ./pre_synth_sim.out
 ```
 
-8. Open simulation waveform in GTKwave tool
+8. GTKwave tool
 
 ```
 gtkwave pre_synth_sim.out
 
 ```
 
+![Screenshot (82)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/811edf19-0541-4fa6-bcfb-7e16d4e0f4c7)
 
-
-
-
-
-In this picture we can see the following signals:
-
-CLK: This is the input CLK signal of the RVMYTH core. This signal comes from the PLL, originally.
-reset: This is the input reset signal of the RVMYTH core. This signal comes from an external source, originally.
-OUT: This is the output OUT signal of the VSDBabySoC module. This signal comes from the DAC (due to simulation restrictions it behaves like a digital signal which is incorrect), originally.
-RV_TO_DAC[9:0]: This is the 10-bit output [9:0] OUT port of the RVMYTH core. This port comes from the RVMYTH register #17, originally.
-OUT: This is a real datatype wire which can simulate analog values. It is the output wire real OUT signal of the DAC module. This signal comes from the DAC, originally. This can be viewed by changing the Data Format of the signal to Analog -> Step .
-
-PLEASE NOTE that the sythesis process does not support real variables, so we must use the simple wire datatype for the \vsdbabysoc.OUT instead. The iverilog simulator always behaves wire as a digital signal. As a result we can not see the analog output via \vsdbabysoc.OUT port and we need to use \dac.OUT (which is a real datatype) instead.
+![Screenshot (83)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/1fa01bcb-8635-468f-9232-c111d7ddd4a4)
 
 
 
@@ -1264,6 +1236,15 @@ PLEASE NOTE that the sythesis process does not support real variables, so we mus
 
 
 
+
+
+
+Analysis if picture above:
+CLK:The input CLK signal of the RVMYTH core comes from the PLL.
+reset: Input reset signal of the RVMYTH core comes from an external source.
+OUT: Output OUT signal of the VSDBabySoC module comes from the DAC.
+RV_TO_DAC[9:0]:The 10-bit output [9:0] OUT port of the RVMYTH core, comes from the RVMYTH register #17.
+OUT: The real datatype wire which can simulate analog values, the output wire real OUT signal of the DAC module, it comes from the DAC. It is changing the Data Format of the signal to Analog -> Step .
 
 
  </details> 
