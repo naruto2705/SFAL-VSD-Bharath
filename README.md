@@ -1023,7 +1023,7 @@ set_load -min 0.1 [get_ports OUT_Y]
  </details> 
 
  <details> 
-<summary>  DAY 11  </summary>
+<summary>  DAY 11 - Introduction to Baby SoC  </summary>
 
 <img width="1255" alt="10c1" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/a266598c-61ee-4408-bb69-c313f98ec8d0">
 <img width="1336" alt="10c2" src="https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/aa28e161-3c1b-4f1a-8219-0c46853175ad">
@@ -1061,7 +1061,7 @@ References
  </details> 
 
  <details> 
-<summary>  DAY 12  </summary>
+<summary>  DAY 12-Modelling of BabySoC  </summary>
 
 SoC and What does modelling mean?
 
@@ -1250,7 +1250,7 @@ OUT: The real datatype wire which can simulate analog values, the output wire re
  </details> 
 
  <details> 
-<summary>  DAY 13  </summary>
+<summary>  DAY 13- Post Synthesis Simulation  </summary>
 
 Reference github repositories
 
@@ -1484,7 +1484,7 @@ Comparing the QoR without SDC and with SDC shows that clk is not considered when
  </details> 
 
  <details> 
-<summary>  DAY 14  </summary>
+<summary>  DAY 14- Synopsis: DC and Timing Analysis  </summary>
 
 Download the timing libraries in the path /home/bharath/VSDBabySoC/src/timing_libs from https://github.com/efabless/skywater-pdk-libs-sky130_fd_sc_hd/tree/master/timing
 
@@ -1519,9 +1519,7 @@ Repeat the above process for all the PVT corners inside timing_libs Table below 
 
 (ATTACH THE PIC)
 
-They are represented in graphical format as follows
 
-(ATTACH THE PIC)
 
 
  </details> 
