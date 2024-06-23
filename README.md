@@ -1311,17 +1311,17 @@ write_lib avsddac -format db -output avsddac.db
 ```
 
 The conversion of avsddac.lib to avsddac.db is successful as shown in screenshot below. If the code runs successfully, it will return 1.
+![Screenshot (84)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/f7ff9505-1c63-491e-aa4f-894dbe7942b1)
 
-(ATTACH THE PIC)
 
 
 Converting avsdpll.lib file to avsdpll.db file
 
-Syntax to convert the avsdpll.lib files to avsdpll.db
+Commands to convert the avsdpll.lib files to avsdpll.db
 
 
 ```
-cd /home/sukanya/VSDBabySoC/src/lib
+cd /home/Bharath/VSDBabySoC/src/lib
 lc_shell
 read_lib avsdpll.lib
 write_lib avsdpll -format db -output avsdpll.db
@@ -1335,12 +1335,7 @@ ATTACH THE PIC
 
 The modification for avsdpll.lib is highlighted in the right with the original shown on the left. The power VDD and ground GND pins are removed along with other commented parts.
 
-(ATTACH THE PIC)
 
-After the modification, the avsdpll.lib is converted to avsdpll.db successfully.
-
-
-(ATTACH THE PIC)
 
 
 Converting sky130_fd_sc_hd__tt_025C_1v80.lib file to asky130_fd_sc_hd__tt_025C_1v80.db file
@@ -1372,17 +1367,16 @@ Syntax to perform synthesis
 cd /home/bharath/VSDBabySoC
 dc_shell
 set target_library /home/bharath/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db
-set link_library {* /home/bharath/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/sukanya/VSDBabySoC/src/lib/avsdpll.db /home/sukanya/VSDBabySoC/src/lib/avsddac.db}
-set search_path {/home/bharath/VSDBabySoC/src/include /home/sukanya/VSDBabySoC/src/module} 
+set link_library {* /home/bharath/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/bharath/VSDBabySoC/src/lib/avsdpll.db /home/bharath/VSDBabySoC/src/lib/avsddac.db}
+set search_path {/home/bharath/VSDBabySoC/src/include /home/bharath/VSDBabySoC/src/module} 
 read_file {sandpiper_gen.vh  sandpiper.vh  sp_default.vh  sp_verilog.vh clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v} -autoread -top vsdbabysoc 
 link 
 compile_ultra
-write_file -format verilog -hierarchy -output /home/sukanya/VSDBabySoC/output/vsdbabysoc_net.v
+write_file -format verilog -hierarchy -output /home/bharath/VSDBabySoC/output/vsdbabysoc_net.v
 report_qor > report_qor.txt
 ```
 
-(ATTACH THE PIC)
-(ATTACH THE PIC)
+![Screenshot (87)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/df568aa2-53c4-467c-ba0c-60cf5c651d3d)
 
 
 The quality of report is saved in the file report_qor.txt.
@@ -1398,7 +1392,8 @@ gtkwave dump.vcd
 ```
 
 The output of GLS is shown below. 
-(ATTACH THE PIC)
+![Screenshot (85)](https://github.com/naruto2705/SFAL-VSD-Bharath/assets/34330742/6590aee3-1406-4b7d-8921-80ca5dcf942c)
+
 
 Comparing the post-synthesis (top) and pre-synthesis (bottom) output shows they match.
 (ATTACH THE PIC)
@@ -1433,8 +1428,8 @@ Syntax to perform synthesis with SDC constraints
 ```
 dc_shell
 set target_library /home/bharath/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db
-set link_library {* /home/bharath/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/sukanya/VSDBabySoC/src/lib/avsdpll.db /home/sukanya/VSDBabySoC/src/lib/avsddac.db}
-set search_path {/home/bharath/VSDBabySoC/src/include /home/sukanya/VSDBabySoC/src/module} 
+set link_library {* /home/bharath/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.db /home/bharath/VSDBabySoC/src/lib/avsdpll.db /home/bharath/VSDBabySoC/src/lib/avsddac.db}
+set search_path {/home/bharath/VSDBabySoC/src/include /home/bharath/VSDBabySoC/src/module} 
 read_file {sandpiper_gen.vh  sandpiper.vh  sp_default.vh  sp_verilog.vh clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v} -autoread -top vsdbabysoc 
 link
 read_sdc /home/bharath/VSDBabySoC/src/sdc/vsdbabysoc_synthesis.sdc
@@ -1504,7 +1499,7 @@ write_lib sky130_fd_sc_hd__ff_100C_1v65 -format db -output sky130_fd_sc_hd__ff_1
 ```
 
 
-Syntax to perform synthesis with SDC constraints
+Commands for synthesis with SDC constraints
 
 ```
 cd /home/bharath/VSDBabySoC
@@ -1514,7 +1509,7 @@ set link_library {* /home/bharath/VSDBabySoC/src/timing_libs/sky130_fd_sc_hd__ff
 set search_path {/home/bharath/VSDBabySoC/src/include /home/sukanya/VSDBabySoC/src/module} 
 read_file {sandpiper_gen.vh  sandpiper.vh  sp_default.vh  sp_verilog.vh clk_gate.v rvmyth.v rvmyth_gen.v vsdbabysoc.v} -autoread -top vsdbabysoc 
 link
-read_sdc /home/sukanya/VSDBabySoC/src/sdc/vsdbabysoc_synthesis.sdc
+read_sdc /home/Bharath/VSDBabySoC/src/sdc/vsdbabysoc_synthesis.sdc
 compile_ultra
 write_file -format verilog -hierarchy -output /home/sukanya/VSDBabySoC/output/vsdbabysoc_net_ff_100C_1v65.v
 report_qor > report/report_qor_ff_100C_1v65.txt
