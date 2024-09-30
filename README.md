@@ -1526,35 +1526,386 @@ Repeat the above process for all the PVT corners inside timing_libs Table below 
 
 
  <details> 
-<summary>  DAY 15  </summary>
+<summary>  DAY 15- Floorplanning & Power Planning of BabySoC  </summary>
+
+(ATTACH THE PIC)
+
+
+Physical Design is the process of translating the gate level netlist into a physical layout. This physical layout consists of various metal shapes and sizes which can be drawn onto masks and manufactured on the silicon wafer.
+
+The Physical Design process can be broken down into multiple stages as illustrated below. It is often an iterative process where a number of optimizations are performed at each step to meet the design performance, area & power requirements.
+
+### Floorplanning :
+
+Floorplanning is the first step of physical design. The design is first partitioned into various smaller subsystems based on the system architecture and design requirements. Floorplanning determines the aspect ratio and area of the layout. Here we create the placement rows for standard cells and fix the placement of I/Os around the boundary. Any macros in the design are also placed during the floorplan stage.
+
+Power planning is also typically done during floorplanning. The power grid network is created to distribute power to all the std cells rows, macros and all other components of the design. If there are any special IPs being used in the design then all the IP integration guidelines are also considered in floorplanning.
+
+A good floorplan is very critical to the overall quality of your design.
+
+(ATTACH THE PIC)
+
+Logic Placement :
+
+In this stage all the standard cells in the design are placed and assigned a legal location. After the placement EDA tools performs a number of optimizations to improve placement and congestion. A bad placement might lead to larger area utilization and timing issues.
+
+EDA tools also use timing driven placement algorithms to optimize the placement while considering the timing requirements of the design.
+
+Clock Tree Synthesis :
+
+During the Floorplanning & placement stage, the clock is considered as an ideal network. The optimizations in the placement stage are performed based on the assumption of an ideal clock reaching to all flops at the same time. In CTS, a clock network is created to distribute the clock to all flops. This clock tree is built using buffers or inverters along the clock paths of design in order to achieve zero/minimum skew based on design requirement. A good quality clock network is very crucial to meet the timing requirements of the design.
+
+Routing :
+
+Once all the standard cells are legally placed and the clock network is synthesized, all the connecting data nets need to be laid out on the metal layers. This is done during the routing stage. After routing all the nets, a number of optimizations are performed based on the design timing requirements and analysis.
+
+Timing Analysis & Signoff :
+
+After the design Routing, static timing analysis is performed on the design. This step is critical to analyze the performance of the design. During STA, we break down the design into timing paths and calculate the signal propagation delay along each path. Then each path is checked for violations of timing constraints. If any path is violated then these violations need to be addressed before signing off on the design.
+
+The timing signoff ensures that all the design elements are meeting the specified timing requirements and the design is working at the desired frequency.
+
+Physical Verification & Signoff :
+
+After the routing is completed, the layout must be completely verified to ensure its correct electrical and logical functionality. The physical verification signoff ensures that the design meets all the fabrication specified rules and can be easily manufactured. Various checks that are performed at this stage includes :
+
+    DRC (Design Rule Check)
+    LVS (Layout Vs Schematic)
+    ERC (Electrical Rule Check)
+    Antenna check
+    EM (Electromigration Analysis)
+
+Once the physical verification is done, the layout is streamed out in the form of a GDSII or OASIS file for fabrication which is called design tapeout.
+
+What is Floorplanning? :
+
+In VLSI design, Floorplanning is a crucial step in physical design that involves placing blocks and macros in the chip or core area.
+
+The primary objectives of floorplanning are to minimize area, timing, wire length, and power consumption while ensuring easy routing and reliability.
+
+Here are the key aspects of floorplanning:
+Inputs for Floorplanning :
+
+    Gate level netlist (.v)
+    Physical & Logical Libraries. (.lefs & .libs for all standard cell,macros,IO Pads etc.)
+    Synopsys design constraints (.sdc).
+    RC Tech File (TLU+ file) - to determine RC values of interconnect layers/metal layers of technology node used in our design, and hence provide RC values for computation of wire delays.
+    Technology File (.tf).
+    Physical Partitioning information of the design.
+    Floorplanning Parameters like height,width,aspect ratio etc.
+
+Outputs of Floorplanning
+
+    Die/Core Area: The physical description of the ASIC design.
+    IO Pad Information: The placement of I/O pins.
+    Placed Macros Information: The placement of macros.
+    Standard Cell Placement Areas: The areas where standard cells are placed.
+    Power Grid Design: The power distribution plan.
+    Blockages: The defined regions where cells cannot be placed.
+
+Sources:
+
+    https://www.vlsisystemdesign.com/floorplanning/
+    https://www.vlsi4freshers.com/2020/01/floorplanning.html
+    https://www.physicaldesign4u.com/2019/12/floorplanning-floor-planning-is-art-of.html
+    http://vlsibegin.blogspot.com/p/floorplanning_7.html
+    https://vlsitutor.com/nots/introduction-to-floorplan/
+
+Types of floorplan techniques used in Full Chip plan :
+
+    Abutted Floorplan: This technique involves channel-less placement of blocks, where there is no gap between the blocks.
+    Non-Abutted Floorplan: In this technique, blocks are placed with a gap between them, and connections are made through routing nets.
+    Mix of Both: This approach combines abutted and non-abutted techniques, using both channels and direct connections.
+
+    (ATTACH THE PIC)
+
+Floorplan Control Parameters
+
+    Aspect Ratio: The ratio of the height to the width of the chip, which affects routing resources and congestion.
+    Core Utilization: The percentage of the core area occupied by standard cells, macros, and blockages.
+
+Floorplan Steps
+
+    Define Width and Height: Determine the size of the core and die.
+    IO Pin Placement: Place I/O pins at the boundary of the chip.
+    Power Planning: Plan the power grid and power distribution.
+    Macro Placement: Place macros manually using flylines.
+    Standard Cell Row Creation: Create areas for standard cell placement.
+    Blockages: Define blockages to ensure proper placement and routing.
+
+    (ATTACH THE PIC)
+
+Key Terms
+
+    Standard Cell Row: The area where standard cells are placed, divided into rows with varying heights.
+    Flylines: Virtual connections between macros and IO pads, helping in logical placement and reducing routing resources.
+    Halo (Keep Out Margin): The region around fixed macros where other macros and standard cells cannot be placed.
+
+Issues with Bad Floorplanning
+
+    Area and Power Consumption: A bad floorplan can increase the area and power consumption of the chip.
+    Reliability: It can affect the reliability of the chip.
+    Timing Closure: A bad floorplan can make timing closure difficult.
+
+Qualifying a Good Floorplan
+
+    Meet Timing and Congestion Constraints: Ensure that the floorplan meets timing and congestion constraints.
+    Optimize Area and Power: Optimize the area and power consumption of the chip.
+    Ensure Routing and Placement: Ensure that the floorplan allows for easy routing and placement.
+
+Automatic Floorplan Options
+
+    Automatic Macro Placement: Most PnR tools provide automatic floorplan options, but these may not always produce optimal results.
+
+Macro Placement Tips
+
+    Understand Pins and Orientation: Understand the pin requirements and orientation of macros.
+    Follow Data Flow: Place macros following the data flow and hierarchy.
+    Ensure Proper Orientation: Ensure that all macro pins point towards the core logic.
+    Channel Size: Ensure that channels between macros are large enough for routing and power grids.
+
+Blockages
+
+    Soft Blockages: Partial blockages that can be removed during placement.
+    Hard Blockages: Permanent blockages that cannot be removed.
+    Partial Blockages: Blockages that can be removed during placement but are used to prevent congestion.
+
+What is Power Planning ?
+
+Power planning in VLSI design is the process of creating a power distribution network (PDN) to provide power to all the components of the chip, including macros, standard cells, and other cells. The main objectives of power planning are:
+
+    Maintain a stable voltage across the chip with minimal noise.
+    Avoid electromigration and self-heating issues.
+    Consume minimal chip area and wiring resources
+    Meet IR drop budget targets for reliable operation.
+
+The key steps in power planning are:
+
+    Calculating the number of power pins required, based on the total power consumption of the chip.
+    Determining the number of power rings, stripes, and rails needed to distribute power uniformly.
+    Sizing the width of power rings and stripes to handle the required current.
+    Analyzing IR drop and taking measures to keep it within acceptable limits.
+
+The power distribution hierarchy consists of:
+
+    Power pads that bring power from outside the chip.
+    Power rings around the core area.
+    Power stripes that distribute power horizontally and vertically across the core.
+    Power rails that connect the power stripes to the standard cells.
+
+Power planning is typically done during the floorplanning stage, before signal routing. It involves creating a power mesh using the top metal layers, which have lower resistance compared to lower metal layers.
+
+The power mesh is connected to the standard cells through power rails.
+
+Proper power planning is critical in modern VLSI designs to ensure reliable operation and meet power budget constraints, especially in deep sub-micron technologies where power has become a primary concern over area and performance.
+
+    (ATTACH THE PIC)
+
+Lab - Floorplanning of VSDBabySoC :
+
+    Downloading Physical design Collaterals :
+        git clone https://github.com/efabless/skywater-pdk-libs-sky130_fd_sc_hd/tree/master - to download all Technology file (.techlef) for skywater130nm pdk and all the .lef files for all standard cells.
+        git clone https://github.com/bharath19-gs/synopsys_ICC2flow_130nm - to download Technology file (.tf) for skywater130nm pdk and RC Tech file (parasitics file) in .itf format for the PDK.
+        git clone https://github.com/kunalg123/icc2_workshop_collaterals - to download all the scripts to setup and run Physical Design flow in ICC2 Compiler tool.
+
+    The Interconnect Technology Format (ITF) file is a critical component in the physical design of integrated circuits (ICs). Here is a concise summary of what the ITF file contains and how it is used:
+
+The ITF file provides a detailed description of the process technology, including the physical attributes of the conductor and dielectric layers. Specifically, it specifies:
+
+    The thickness, minimum width, and minimum spacing of each conductor layer.
+    The sheet resistance (RPSQ) of each conductor layer.
+    The thickness and dielectric constant (ER) of each dielectric layer.
+    The resistivity (RHO) and area (AREA) of each via layer.
+
+This information is used to accurately model the parasitic resistance and capacitance (RC) of the interconnect in the design.
+
+The ITF file is a critical input for parasitic extraction tools to generate the RC parasitics needed for timing, signal integrity, power, and reliability analysis.
+
+Additionally, the ITF file can be used to generate TLU+ files, which are another important technology file used in physical design.
+
+```
+To convert .itf file to .tluplus format,perform the following steps :
+
+1) cd `/home/subhasis/VSDBabySoC/synopsys_ICC2flow_130nm/synopsys_skywater_flow_nominal/itf_files`
+2) In Linux Terminal,
+    grdgenxo -itf2TLUPlus -i skywater130.nominal.itf -o skywater130.nominal.tluplus # to generate TLUplus RC Tech file from .itf file format using StarRC tool.
+
+```
+
+Add  (ATTACH THE PIC) 10+
+
 
  </details> 
 
   <details> 
-<summary>  DAY 16  </summary>
+<summary>  DAY 16- Placement of BabySoC  </summary>
 
  </details> 
 
 
   <details> 
-<summary>  DAY 17  </summary>
+<summary>  DAY 17- CTS </summary>
+Clock Tree Synthesis (CTS) is a critical process in VLSI design, aimed at ensuring that the clock signal is efficiently distributed across all sequential elements in a circuit. This process is essential for maintaining timing integrity, minimizing power consumption, and optimizing performance.
+Overview of Clock Tree Synthesis
+
+CTS involves connecting the clock signal from the clock port to the clock pins of sequential cells while minimizing insertion delay and balancing skew. The clock network is typically categorized as a high fanout net, which requires special handling due to its significant power consumption—often accounting for 30-40% of total chip power—and its susceptibility to electromigration (EM) effects.
+Key Objectives of CTS
+
+    Minimize Insertion Delay: This is crucial for ensuring that the clock signal reaches all components in a timely manner, thus maintaining the overall performance of the design.
+
+    Balance Skew: Skew refers to the difference in arrival times of the clock signal at different sequential elements. Balancing skew is vital to ensure synchronous operation of the circuit.
+
+    Power Optimization: Since the clock network consumes a substantial amount of power, optimizing its design can lead to significant energy savings.
+
+Steps in Clock Tree Synthesis
+
+The CTS process typically includes the following steps:
+
+    Preparation: This involves checking the legality of the design, ensuring power connections are correct, and verifying that the timing quality of results (QoR) is acceptable.
+
+    Clustering: Grouping sink pins based on their geometric locations to facilitate better skew management.
+
+    Buffer Insertion: Automatically inserting buffers and inverters along the clock paths to manage load and reduce insertion delay.
+
+    Balancing: Using clock buffers and inverters to achieve a balanced clock distribution across the design.
+
+    Post-Conditioning: Final adjustments to ensure that all design rules are met and that the clock tree operates within specified parameters for skew and insertion delay.
+
+Types of Clock Tree Structures
+
+Several structures can be utilized for building the clock tree, including:
+
+    H-Tree Structure: A balanced tree structure that minimizes skew.
+    X-Tree Structure: Similar to the H-tree but optimized for different geometries.
+    Geometric Matching Algorithm (GMA): A method for optimizing the layout of the clock tree.
+    Pi Tree Structure: A structure that balances loads effectively.
+    Fishbone Structure: A more complex design that can handle varying loads and distances.
+
+Inputs and Outputs of CTS
+Inputs Required for CTS
+
+    Placement Database (DB): Contains the netlist after placement, including various technology files and specifications.
+    Clock Tree Specification File: Defines the requirements and constraints for the clock tree.
+    Library Files: Include information on clock buffers and inverters used in the design.
+
+Outputs of CTS
+
+After the CTS process, the outputs typically include:
+
+    A netlist that reflects the clock tree configuration.
+    Timing reports detailing setup and hold times.
+    Skew and latency reports to assess clock performance.
+
+Quality Checks Post-CTS
+
+After completing the CTS, several checks are necessary to ensure the clock tree meets design goals:
+
+    Insertion Delay: Must meet target values.
+    Skew Balancing: Should be within acceptable limits.
+    Signal Integrity: Ensuring minimal crosstalk and other noise effects.
+    Power Consumption: Evaluating the clock tree's power usage to ensure it aligns with design specifications.
+
+In summary, Clock Tree Synthesis is a fundamental aspect of VLSI design that directly impacts the performance, power efficiency, and reliability of integrated circuits. Proper execution of CTS ensures that the clock signal is effectively distributed, enabling synchronous operation of all components within the design.
+
+Citations: [1] https://vlsitalks.com/physical-design/cts/ [2] https://anysilicon.com/clock-tree-synthesis/ [3] https://vlsitutor.com/nots/clock-tree-synthesis/ [4] https://signoffsemiconductors.com/clock-tree-synthesis-1/ [5] https://www.physicaldesign4u.com/2020/02/clock-tree-synthesis.html
+ </details> 
+
+
+
+
+  <details> 
+<summary>  DAY 18- Routing </summary>
+Routing is a crucial stage in the VLSI design flow that creates physical connections between signal pins by following design rules. The main goals of routing are to minimize total wire length and vias, complete routing within the design area, meet timing constraints, and avoid design rule violations.
+Types of Routing
+
+There are three main types of routing:
+
+    Pre-routing (also known as power routing) which is done during power planning.
+    Clock routing performed while building the clock tree in the clock tree synthesis (CTS) stage.
+    Signal routing done after CTS to connect all signal pins.
+
+Routing Flow
+
+The routing flow consists of four main stages:
+
+    Global Routing: Divides the core area into global cells (gcells) and finds the shortest path for each net using algorithms like maze routing and Steiner tree. It assigns nets to specific gcells but does not define actual tracks.
+
+    Track Assignment: Assigns actual metal layers to global routes while fixing some design rule violations. However, many DRC, signal integrity, and timing violations still remain.
+
+    Detailed Routing: Completes the actual metal and via connections between pins. It fixes all remaining violations through multiple iterations. The block is divided into switch boxes (Sboxes) for routing.
+
+    Search and Repair: Performed after the first detailed routing iteration to locate and fix any remaining shorts or spacing violations[2][3].
+
+Routing Constraints
+
+Key routing constraints include:
+
+    Design rule constraints related to manufacturing
+    Performance constraints to meet timing
+    Routing density constraints to avoid congestion
+    Constraints on off-grid routing
+    Blocked routing regions
+
+Routing Outputs
+
+The main outputs of routing are:
+
+    Geometric layout of all nets in GDS format
+    SPEF file for parasitics
+    Updated SDC file with routed timing
+
+In summary, routing is a critical step that completes the physical connections in the design while meeting various constraints. Efficient routing is essential for manufacturability and performance closure in modern VLSI designs.
+
+Citations: [1] https://vlsitalks.com/physical-design/routing/ [2] https://www.vlsi4freshers.com/2020/01/routing.html [3] http://vlsibegin.blogspot.com/p/routing.html [4] https://www.vlsi-backend-adventure.com/routing.html [5] https://signoffsemiconductors.com/routing/
+Lab - Routing of VSDBabySoC :
+
+    Min & Max Routing Layer,set up in icc2_common_setup.tcl & top.tcl :
 
  </details> 
 
   <details> 
-<summary>  DAY 18  </summary>
+<summary>  DAY 19- STA using Prime Time  </summary>
 
  </details> 
 
   <details> 
-<summary>  DAY 19  </summary>
+<summary>  DAY 20- ECO using Prime Time </summary>
+
+Engineering Change Orders (ECOs) play a crucial role in the VLSI (Very Large Scale Integration) design process, particularly in accommodating changes and rectifying errors in semiconductor chip designs. This process is essential for enhancing design efficiency and minimizing costs associated with production.
+Definition and Purpose of ECO
+
+An Engineering Change Order (ECO) is a method used to implement changes in the design of a semiconductor chip after it has undergone various stages such as synthesis, placement, and routing. The primary purpose of an ECO is to allow for modifications that can address functional errors, optimize performance, or meet new specifications without restarting the entire design cycle. This is particularly important in the competitive semiconductor industry, where time-to-market is critical.
+Types of ECO
+
+ECOs can be classified into two main categories based on their implementation scope:
+
+    All Layers ECO: This type involves changes that require modifications across all layers of the chip, including both base and metal layers. It is typically used when significant changes are needed, such as updates to hard macro cells or extensive modifications that cannot be confined to a few layers.
+
+    Metal-Only ECO: This approach focuses on making changes only to the metal layers, minimizing the need to alter the base layers. This is often preferred to reduce costs associated with mask production, as the base layers are generally more expensive to modify.
+
+ECO Process
+
+The ECO process typically involves several key steps:
+
+    Specification of Changes: The first step is to define the changes needed in the design.
+
+    Netlist Comparison: The modified netlist is compared against the original "golden" netlist to identify differences.
+
+    Placement and Routing Updates: The design undergoes placement adjustments for the new logic and routing optimizations to accommodate these changes.
+
+    Verification: Formal verification is conducted to ensure that the changes meet the design specifications and do not introduce new errors.
+
+Challenges in ECO Implementation
+
+Despite the advantages of ECOs, challenges remain, particularly in terms of computational complexity and the physical constraints of the design. The need for automation in the ECO process is increasingly recognized, as manual implementations can be time-consuming and prone to errors. Current research focuses on developing more efficient ECO tools that can handle the intricate requirements of modern VLSI designs.
+Conclusion
+
+In summary, Engineering Change Orders are a vital component of the VLSI design flow, enabling designers to efficiently implement necessary modifications while preserving previously invested efforts. As the complexity of designs increases, the need for effective ECO processes will continue to grow, highlighting the importance of ongoing research and development in this area.
+
+Citations: [1] https://www.synopsys.com/glossary/what-is-functional-eco.html [2] https://www.linkedin.com/pulse/engineering-change-order-physical-design [3] https://vlsiuniverse.blogspot.com/2013/05/engineering-change-order-eco.html [4] https://www.techsimplifiedtv.in/2023/11/what-is-engineering-change-ordereco-in.html [5] https://people.eecs.berkeley.edu/~alanmi/publications/other/date20_eco1.pdf [6] https://www.youtube.com/watch?v=n63oF94F6JA
 
  </details> 
 
-  <details> 
-<summary>  DAY 20  </summary>
-
- </details> 
 
 
 
